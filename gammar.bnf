@@ -1,21 +1,22 @@
-PROGRAM -> (STATEMENT | FUNCLIST)?
-FUNCLIST -> FUNCDEF FUNCLIST | FUNCDEF
-FUNCDEF -> def ident(PARAMLIST){STATELIST}
-PARAMLIST -> (( int | float | string ) ident, PARAMLIST | ( int | float | string ) ident)?
-STATEMENT -> (VARDECL; | ATRIBSTAT; | PRINTSTAT; | READSTAT; | RETURNSTAT; | IFSTAT | FORSTAT | {STATELIST} | break ; | ;)
-VARDECL -> ( int | float | string ) ident ([int_constant])∗
-ATRIBSTAT -> LVALUE = ( EXPRESSION | ALLOCEXPRESSION |FUNCCALL)
-FUNCCALL -> ident(PARAMLISTCALL)
-PARAMLISTCALL -> (ident, PARAMLISTCALL | ident)?
-PRINTSTAT -> print EXPRESSION
-READST AT -> read LVALUE
-RETURNSTAT -> return
-IFSTAT -> if( EXPRESSION ) STATEMENT (else STATEMENT)?
-FORSTAT -> for(ATRIBSTAT; EXPRESSION; ATRIBSTAT) STATEMENT
-STATELIST -> STATEMENT (STATELIST)?
-ALLOCEXPRESSION -> new (int | float | string) ([ NUMEXPRESSION ])+
-EXPRESSION -> NUMEXPRESSION((< | > | <= | >= | == | !=) NUMEXPRESSION)?
-NUMEXPRESSION -> TERM ((+ |−) TERM)∗
-TERM -> UNARYEXPR(( ∗ | / | %) UNARYEXPR)∗
-UNARYEXPR -> ((+ |−))? FACTOR -> (int_constant | float_constant | string_constant | null || LVALUE |(NUMEXPRESSION))
-LVALUE -> ident( [NUMEXPRESSION] )
+[x] PROGRAM -> (STATEMENT | FUNCLIST)?
+[x] FUNCLIST -> FUNCDEF FUNCLIST | FUNCDEF
+[x] FUNCDEF -> def ident(PARAMLIST){STATELIST}
+[x] PARAMLIST -> (( int | float | string ) ident, PARAMLIST | ( int | float | string ) ident)?
+[x] STATEMENT -> (VARDECL; | ATRIBSTAT; | PRINTSTAT; | READSTAT; | RETURNSTAT; | IFSTAT | FORSTAT | {STATELIST} | break ; | ;)
+[x] VARDECL -> ( int | float | string ) ident ([int_constant])∗
+[x] ATRIBSTAT -> LVALUE = ( EXPRESSION | ALLOCEXPRESSION |FUNCCALL)
+[x] FUNCCALL -> ident(PARAMLISTCALL)
+[x] PARAMLISTCALL -> (ident, PARAMLISTCALL | ident)?
+[x] PRINTSTAT -> print EXPRESSION
+[x] READSTAT -> read LVALUE
+[x] RETURNSTAT -> return
+[x] IFSTAT -> if( EXPRESSION ) STATEMENT (else STATEMENT)?
+[x] FORSTAT -> for(ATRIBSTAT; EXPRESSION; ATRIBSTAT) STATEMENT
+[x] STATELIST -> STATEMENT (STATELIST)?
+[x] ALLOCEXPRESSION -> new (int | float | string) ([ NUMEXPRESSION ])+
+[X] EXPRESSION -> NUMEXPRESSION((< | > | <= | >= | == | !=) NUMEXPRESSION)?
+[x] NUMEXPRESSION -> TERM ((+ |−) TERM)∗
+[x] TERM -> UNARYEXPR(( ∗ | / | %) UNARYEXPR)∗
+[x] UNARYEXPR -> ((+ |−))? FACTOR
+[x] FACTOR -> (int_constant | float_constant | string_constant | null | LVALUE |(NUMEXPRESSION))
+[x] LVALUE -> ident( [NUMEXPRESSION] )*

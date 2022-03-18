@@ -2,5 +2,5 @@ class TestingProgram:
     function sum(a, b):
         return a + b
 
-test = @TestingProgram()
-test.sum(10,20)
+test = TestingProgram()
+test@sum(10,20)

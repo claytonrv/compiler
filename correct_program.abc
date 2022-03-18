@@ -1,6 +1,15 @@
 class TestingProgram:
-    function sum(a, b):
-        return a + b
+    myVar = "that is my test var"
+
+    def sum(a, b){
+        result = a + b
+        return result
+    }
+
+    def getMyVar(){
+        return myVar
+    }
 
 test = TestingProgram()
 test.sum(10,20)
+print(test.getMyVar())
