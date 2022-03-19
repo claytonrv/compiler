@@ -46,7 +46,7 @@ class ParamerterListNode:
         self.close_parentheses = funct_end
 
     def __repr__(self) -> str:
-        return f"{self.open_parentheses}, {[parameter + ', ' for parameter in self.parameters]} {self.close_parentheses}"
+        return f"{self.open_parentheses}, {[repr(parameter) + ', ' for parameter in self.parameters]} {self.close_parentheses}"
 
 
 class StatementNode:

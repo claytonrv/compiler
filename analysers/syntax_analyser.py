@@ -176,6 +176,7 @@ class Parser:
 
         while self.current_token.type != SYMBOLS_TABLE.index("close_parentheses"):
             token = self.current_token
+            factor = None
             if token.type == SYMBOLS_TABLE.index(
                 "int"
             ) or token.type == SYMBOLS_TABLE.index("float"):
@@ -301,6 +302,8 @@ class Parser:
         return left
 
     def if_statement(self):
+        else_statement = None
+        secondary_statement = None
         if_token = self.current_token
         self.advance()
         open_parentheses = self.current_token

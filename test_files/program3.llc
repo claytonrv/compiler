@@ -1,0 +1,104 @@
+def main(){
+    int NroDeHoras = 0;
+    float PrecoDoQuilo = 1053;
+    float TaxaDoDolar = 18;
+    float TaxaDoMarco = 1956;
+    float TaxaDoPeso = 175;      
+    float TaxaDoFranco = 02; 
+}
+
+LARGURA_MAXIMA 50
+NRO_DE_DIAS_DA_SEMANA 7
+NRO_DE_HORAS_DO_DIA 24
+VALOR_DE_PI  31415
+
+def main (){
+   int TotalDeHoras;
+
+    TotalDeHoras = 10 * NRO_DE_DIAS_DA_SEMANA * NRO_DE_HORAS_DO_DIA;
+}
+
+def main (){
+   print("Isto eh uma string n");
+   print("Outra string "); 
+   print("Terceira stringn"); 
+}
+
+
+def getch(){
+    return read value;
+}
+
+def main ()
+{
+   int NroDeAndares;
+   int AlturaPorAndar;   
+
+   NroDeAndares = 7;
+   AlturaPorAndar = 3;
+
+   print("Altura Total do Prédio metros"); 
+   print(NroDeAndares*AlturaPorAndar);
+   getch();
+}
+
+def main (){
+   float NotaDaP1, NotaDaP2;
+   float Media;
+      
+
+   clrscr();
+   NotaDaP1 = 66;
+   NotaDaP2 = 82;
+
+   Media = (NotaDaP1 + NotaDaP2) / 20;
+
+   print("Média Final :"); 
+   print(Media);
+   getch();
+}
+
+def main(){
+   float NotaDaP1;
+   float NotaDaP2;
+   float Media;
+ 
+   NotaDaP1 = 66;
+   NotaDaP2 = 82;
+
+   Media = (NotaDaP1 + NotaDaP2) / 20;
+
+   print("Média Final :"); 
+   print(Media);
+   getch();
+}
+
+x = 1;
+x++;
+x--;
+y = x++;
+z = ++x;
+
+print(2 + 2);
+print(10 % 3);
+
+def main() {
+   char c = getch();
+   print("Caractere digitado:");
+   print(c);
+   print("n");
+   char c2 = getch();
+   print("Caractere digitado:");
+   print(c2);
+}
+
+main() {
+   print("");
+   print(1254321);
+   print("");
+   print(12354321);
+   print("");
+   print(123454321);
+   print("%82fn");
+   print(1234554321);
+}
