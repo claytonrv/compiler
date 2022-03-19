@@ -5,6 +5,7 @@ sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
 from analysers.syntax_analyser import Parser
 from analysers.lexical_analyser import Lexer
+from utils.log_utils import show_messages
 
 
 def run(program_file):
@@ -36,6 +37,7 @@ def run(program_file):
 
 
 if __name__ == "__main__":
+    show_messages("start")
     import sys
 
     # file_path = "test_files/correct_program.llc"
