@@ -1,0 +1,104 @@
+int extIdade = getIdade();
+float extAltura = getAltura();
+float extPeso = getPeso();
+string extNome = getNome();
+string extProfissao = getProfissao();
+
+int internIdade;
+int internAltura;
+float internPeso;
+string internNome;
+string internProfissao;
+
+def getIdade(){
+    return intern_idade;
+}
+
+def setIdade(int idade){
+    intern_idade = idade;
+}
+
+def getAltura(){
+    return internAltura;
+}
+
+def setAltura(altura){
+    internAltura = altura;
+}
+
+def getPeso(){
+    return internPeso;
+}
+
+def setPeso(peso){
+    internPeso = peso;
+}
+
+def getNome(){
+    return internNome;
+}
+
+def setNome(nome){
+    internNome = nome;
+}
+
+def getProfissao(){
+    return internProfissao;
+}
+
+def setProfissao(profissao){
+    internProfissao = profissao;
+}
+
+
+def criar_pessoa_teste(){
+    setIdade(29);
+    setAltura(182);
+    setPeso(87);
+    setNome("Fulano");
+    setProfissao("Profissional");
+}
+
+
+pessoas = new string ["fulano", "ciclano", "deltrano"];
+
+for(int i=0; i<3; i++){
+    if pessoas[i] == "fulano"{
+        print("Fulano passou por aqui");
+    }
+    else {
+        print("Quem esta ai?");
+    }
+}
+
+criar_pessoa_teste();
+
+print(extIdade);
+print(extAltura);
+print(extPeso);
+print(extNome);
+print(extProfissao);
+
+def encontrar_pessoa(string nome){
+    if(nome == "fulano"){
+        return "Fulano foi encontrado";
+    }
+    if(nome == "ciclano"){
+        return "Ciclano foi encontrado";
+    }
+    if(nome == "deltrano"){
+        return "Deltrano foi encontrado";
+    }
+
+    return "A pessoa que voce busca nao esta cadastrada"
+}
+
+def adicionar_pessoal(int idade, float altura, float peso, string nome, string profissao){
+    setIdade(idade);
+    setAltura(altura);
+    setPeso(peso);
+    setNome(nome);
+    setProfissao(profissao);
+
+    pessoas = new string ["fulano", "ciclano", "deltrano", nome]
+}

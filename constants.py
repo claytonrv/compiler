@@ -20,6 +20,8 @@ SYMBOLS_TABLE = [
     "close_parentheses",
     "open_brace",
     "close_brace",
+    "open_bracket",
+    "close_bracket",
     "int",
     "float",
     "string",

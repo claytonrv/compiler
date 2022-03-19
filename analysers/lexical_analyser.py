@@ -43,6 +43,8 @@ OPEN_PARENTHESES_SYMBOL = r"\("
 CLOSE_PARENTHESES_SYMBOL = r"\)"
 OPEN_BRACE_SYMBOL = r"{"
 CLOSE_BRACE_SYMBOL = r"}"
+OPEN_BRACKET = r"\["
+CLOSE_BRACKET = r"\]"
 
 SEMICOLON_SYMBOL = r";"
 COMMA_SYMBOL = r","
@@ -55,6 +57,8 @@ SYMBOLS = [
     (CLOSE_PARENTHESES_SYMBOL, "close_parentheses"),
     (OPEN_BRACE_SYMBOL, "open_brace"),
     (CLOSE_BRACE_SYMBOL, "close_brace"),
+    (OPEN_BRACKET, "open_bracket"),
+    (CLOSE_BRACKET, "close_bracket"),
     (SEMICOLON_SYMBOL, "semicolon"),
     (COMMA_SYMBOL, "comma"),
     (QUOTE_SYMBOL, "quote"),
@@ -199,10 +203,6 @@ class Lexer:
                         for tk in self.split_function_delimiters(lexeme)
                     ]
             for lexeme in lexemes:
-                if lexeme == "that":
-                    print(self.last_token)
-                    print(self.current_lexeme_type)
-
                 if self._is_operator(lexeme):
                     lexeme_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
                     tokens.append(Token(lexeme, lexeme_type))
@@ -245,8 +245,7 @@ class Lexer:
 
 if __name__ == "__main__":
     show_messages("start")
-    # file_path = input("Digite o caminho do arquivo a ser compilado ")
-    # file_path = "./correct_program.llc"
+    # file_path = "test_files/correct_program.llc"
     import sys
 
     file_path = sys.argv[1]

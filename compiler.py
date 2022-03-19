@@ -38,6 +38,7 @@ def run(program_file):
 if __name__ == "__main__":
     import sys
 
+    # file_path = "test_files/correct_program.llc"
     file_path = sys.argv[1]
     if not file_path:
         print(
