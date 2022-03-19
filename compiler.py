@@ -8,20 +8,45 @@ from analysers.lexical_analyser import Lexer
 
 
 def run(program_file):
+    print("\n\n[INFO] Iniciando Analise lexica do arquivo.")
     lexer = Lexer(program_file)
     tokens, errors = lexer.get_tokens()
 
     if errors:
-        return None, errors
+        print("\n\n[INFO] Analise lexica concluida com erros.")
+        [print(error) for error in errors]
+        return None
+    else:
+        print(f"\nLista de tokens:")
+        token_list = ""
+        for token in tokens:
+            token_list = token_list + f" <{token.lexeme}, {token.type}>"
+        print(token_list)
+        print("\n\n[INFO] Analise lexica concluida com sucesso.")
 
+    print("\n\n[INFO] Iniciando Analise sintatica dos tokens.")
     parser = Parser(tokens)
-    ast = parser.parse()
-    print(ast)
+    ast, errors = parser.parse()
+    if errors:
+        print("\n\n[INFO] Analise sintatica concluida com erros.")
+        [print(error) for error in errors]
+    else:
+        print(repr(ast))
+        print("\n\n[INFO] Analise sintatica concluida com sucesso.")
 
 
 if __name__ == "__main__":
-    file_path = "./correct_program.abc"
-    if ".abc" not in file_path:
+    import sys
+
+    file_path = sys.argv[1]
+    if not file_path:
+        print(
+            "[ERRO] Informe o caminho para o arquivo .llc para iniciar a analise lexica"
+        )
+    if ".llc" not in file_path:
+        print("[ERRO] Arquivo invalido! Por favor, envie um arquivo com extensao .llc")
+        exit
+    if ".llc" not in file_path:
         print("Arquivo invalido! Por favor, envie um arquivo com extensao .abc")
         exit
     with open(file_path) as file:

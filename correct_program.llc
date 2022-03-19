@@ -1,4 +1,4 @@
-class TestingProgram:
+class TestingProgram{
     myVar = "that is my test var"
 
     def sum(a, b){
@@ -9,7 +9,8 @@ class TestingProgram:
     def getMyVar(){
         return myVar
     }
+}
 
 test = TestingProgram()
-test.sum(10,20)
-print(test.getMyVar())
+sum(10,20)
+print(getMyVar())

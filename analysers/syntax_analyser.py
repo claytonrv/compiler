@@ -1,6 +1,5 @@
 import sys
 from os import path
-from turtle import left
 
 sys.path.append(path.dirname(path.dirname(path.abspath(__file__))))
 
@@ -47,7 +46,7 @@ class Parser:
         return self.current_token
 
     def factor(self):
-        token = self.current_token()
+        token = self.current_token
         factor = None
 
         if token.type == SYMBOLS_TABLE.index(
@@ -68,7 +67,7 @@ class Parser:
             return factor
 
     def unary_expression(self):
-        left = self.current_token()
+        left = self.current_token
         self.advance()
         factor = self.factor()
         return UnaryOperationNode(left, factor)
@@ -380,6 +379,8 @@ class Parser:
         return FunctionListNode(functions)
 
     def program(self):
+        functions = None
+        statement = None
         if self.current_token.type == SYMBOLS_TABLE.index("def"):
             functions = self.function_list()
             self.advance()
@@ -389,4 +390,4 @@ class Parser:
         return ProgramNode(functions, statement)
 
     def parse(self):
-        return self.program()
+        return self.program(), []

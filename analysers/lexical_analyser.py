@@ -133,6 +133,9 @@ class Lexer:
     def _is_reserved_word(self, lexeme):
         reserved_word_type = None
         for reserved_word, rw_type in RESERVED_WORDS:
+            # print(
+            #     f"lexeme: {lexeme}, reserved word: {reserved_word}, is equal: {re.search(reserved_word, lexeme)}"
+            # )
             if re.search(reserved_word, lexeme):
                 self.current_lexeme_type = rw_type
                 reserved_word_type = rw_type
@@ -154,18 +157,24 @@ class Lexer:
                 primitive_type = pmtv_type
         return primitive_type is not None
 
-    def _is_literal(self, lexeme):
-        literal_type = None
-        if re.search(LITERAL, lexeme):
-            self.current_lexeme_type = "string_constant"
-            literal_type = "string_constant"
-        return literal_type is not None
+    def _is_string(self, lexeme):
+        string_type = None
+        string_constant_index = SYMBOLS_TABLE.index("string_constant")
+        quote_index = SYMBOLS_TABLE.index("quote")
+        if self.last_token == string_constant_index or self.last_token == quote_index:
+            if re.search(LITERAL, lexeme):
+                self.current_lexeme_type = "string_constant"
+                string_type = "string_constant"
+        return string_type is not None
 
     def _is_identifier(self, lexeme):
         identifier_type = None
-        if re.findall(IDENTIFIER, lexeme):
-            self.current_lexeme_type = "identifier"
-            identifier_type = "identifier"
+        string_constant_index = SYMBOLS_TABLE.index("string_constant")
+        quote_index = SYMBOLS_TABLE.index("quote")
+        if self.last_token != string_constant_index or self.last_token != quote_index:
+            if re.findall(IDENTIFIER, lexeme):
+                self.current_lexeme_type = "identifier"
+                identifier_type = "identifier"
         return identifier_type is not None
 
     def _is_number(self, lexeme):
@@ -190,6 +199,10 @@ class Lexer:
                         for tk in self.split_function_delimiters(lexeme)
                     ]
             for lexeme in lexemes:
+                if lexeme == "that":
+                    print(self.last_token)
+                    print(self.current_lexeme_type)
+
                 if self._is_operator(lexeme):
                     lexeme_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
                     tokens.append(Token(lexeme, lexeme_type))
@@ -211,15 +224,14 @@ class Lexer:
                     primitive_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
                     tokens.append(Token(lexeme, primitive_type))
                     self.last_token = primitive_type
-                elif self._is_literal(lexeme):
-                    literal_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
-                    tokens.append(Token(lexeme, literal_type))
-                    self.last_token = literal_type
+                elif self._is_string(lexeme):
+                    string_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
+                    tokens.append(Token(lexeme, string_type))
+                    self.last_token = string_type
                 elif self._is_identifier(lexeme):
-                    if self.last_token != "literal" or self.last_token != "quote":
-                        identifier_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
-                        tokens.append(Token(lexeme, identifier_type))
-                        self.last_token = identifier_type
+                    identifier_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
+                    tokens.append(Token(lexeme, identifier_type))
+                    self.last_token = identifier_type
                 elif self._is_number(lexeme):
                     number_type = SYMBOLS_TABLE.index(self.current_lexeme_type)
                     tokens.append(Token(lexeme, number_type))
@@ -234,9 +246,16 @@ class Lexer:
 if __name__ == "__main__":
     show_messages("start")
     # file_path = input("Digite o caminho do arquivo a ser compilado ")
-    file_path = "./correct_program.abc"
-    if ".abc" not in file_path:
-        print("Arquivo invalido! Por favor, envie um arquivo com extensao .abc")
+    # file_path = "./correct_program.llc"
+    import sys
+
+    file_path = sys.argv[1]
+    if not file_path:
+        print(
+            "[ERRO] Informe o caminho para o arquivo .llc para iniciar a analise lexica"
+        )
+    if ".llc" not in file_path:
+        print("[ERRO] Arquivo invalido! Por favor, envie um arquivo com extensao .llc")
         exit
     with open(file_path) as file:
         lexer = Lexer(file)
@@ -248,6 +267,6 @@ if __name__ == "__main__":
             print(f"\nLista de tokens:")
             token_list = ""
             for token in tokens:
-                token_list = token_list + f" <{token[0]}, {token[1]}>"
+                token_list = token_list + f" <{token.lexeme}, {token.type}>"
             print(token_list)
             print("\n\n[SUCESSO] Analise lexica concluida com sucesso.")
